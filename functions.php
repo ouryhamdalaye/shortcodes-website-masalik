@@ -1,9 +1,9 @@
 <?php
-// Toujours le chemin du thème enfant
+
 define( 'CHILD_DIR', get_stylesheet_directory() );
 define( 'CHILD_URI', get_stylesheet_directory_uri() );
 
-// Petit chargeur générique de fichiers PHP
+// Small generic PHP file loader
 function child_require( string $rel_path ) {
     $file = trailingslashit( CHILD_DIR ) . ltrim( $rel_path, '/\\' );
     if ( file_exists( $file ) ) { require_once $file; }
