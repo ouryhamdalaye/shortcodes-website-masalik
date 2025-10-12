@@ -1,0 +1,105 @@
+/* Woo catalog */
+/* Nouvelle grille produits simple */
+.wc-cards { --gap: 24px; }
+.wc-cards__grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(1, minmax(0,1fr));
+}
+@media (min-width: 640px) { .wc-cards__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (min-width: 992px) { .wc-cards__grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.wc-cards--cols-2 .wc-cards__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.wc-cards--cols-3 .wc-cards__grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.wc-cards--cols-4 .wc-cards__grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+.wc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.wc-card__media {
+  display:block;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.wc-card__media img {
+  width: 10rem;
+  height: 15rem;
+  object-fit: cover;
+  display:block;
+  box-shadow: 20px 8px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.wc-card__media:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+}
+
+.wc-card__body {
+  margin-top: 2rem;
+  width: 10rem;
+  text-align: left;
+}
+.wc-card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color:#0f172a;
+	 min-height: 5rem;
+}
+.wc-card__title a {
+  text-decoration: none;
+  color: inherit;
+}
+.wc-card__title a:hover {
+  text-decoration: underline;
+}
+
+.wc-card__price {
+  margin-top: 6px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gcid-secondary-color);
+}
+
+.wc-card__actions{
+    margin-top: 1rem;
+    width: 10rem;
+    display: flex;
+    justify-items: start;
+}
+
+.wc-card__actions a{
+    background-color: var(--gcid-primary-color);
+    padding: 0.5rem 2rem;
+    border-radius: 7px;
+    color: white;
+}
+
+.wc-card__actions a:hover{
+    background-color: var(--gcid-secondary-color);
+}
+
+/* Badge rond haut-droite */
+.wc-card__media { position: relative; }
+.wc-card__badge {
+  position: absolute;
+  top: -30px; right: -20px;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 54px; height: 54px; padding: 0 10px;
+  border-radius: 999px; font-size: .8rem; font-weight: 700;
+  color: #fff; box-shadow: 0 8px 18px rgba(0,0,0,.18);
+  letter-spacing: .2px; user-select: none;
+}
+.wc-card__badge--new   { background: var(--gcid-primary-color); }  /* vert "Nouveau" */
+.wc-card__badge--promo { background: var(--gcid-secondary-color); }  /* rouge "Promo"  */
+
+/* Prix : style del/ins harmonisé */
+.wc-card__price .price del {
+  opacity: .65; margin-right: 6px; text-decoration: line-through;
+}
+.wc-card__price .price ins {
+  text-decoration: none; font-weight: 800;
+}

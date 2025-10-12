@@ -1,0 +1,64 @@
+.gcid-cats-wrap {
+    display: flex;
+    flex-wrap: nowrap;          /* une seule ligne */
+    gap: 16px;
+    overflow-x: auto;           /* défilement horizontal */
+    overflow-y: hidden;         /* pas de scroll vertical */
+    padding: 8px 4px;
+    max-width: 100%;
+    scroll-snap-type: x proximity;    /* snap doux */
+    -webkit-overflow-scrolling: touch;/* fluide sur iOS */
+}
+
+/* Chaque item garde une largeur fixe pour un vrai carrousel horizontal */
+.gcid-cat {
+    flex: 0 0 120px;            /* carte ~ 120px de large */
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 10px;
+    padding: 10px 8px;
+}
+
+.gcid-cat-icon:focus,
+.gcid-cat-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,.12);
+    filter: saturate(1.05);
+}
+
+.gcid-cat-icon {
+    display: grid;
+    place-items: center;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: var(--gcid-primary-color);
+    margin-bottom: 10px;
+    overflow: hidden;
+	box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    will-change: transform;
+}
+.gcid-cat-icon-img {
+    width: 56%;
+    height: 56%;
+    object-fit: contain;            /* icône centrée */
+}
+.gcid-cat-label {
+    font-size: .92rem;
+    text-align: center;
+    line-height: 1.25;
+    margin-top: 2px;
+}
+
+/* Scrollbar (optionnel, look léger) */
+.gcid-cats-wrap::-webkit-scrollbar { width: 8px; }
+.gcid-cats-wrap::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.15);
+    border-radius: 8px;
+}
+.gcid-cats-wrap::-webkit-scrollbar-track { background: transparent; }

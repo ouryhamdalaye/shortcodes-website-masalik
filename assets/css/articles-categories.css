@@ -1,0 +1,126 @@
+/* Horizontal Categories List - Discrete and compact */
+
+.masalik-categories-horizontal {
+  margin: 12px 0;
+  padding: 8px 0;
+}
+
+.masalik-categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  list-style-type: none !important;
+  margin: 0;
+  padding: 0 !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.masalik-category-item {
+  flex-shrink: 0;
+}
+
+.masalik-category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.masalik-category-link:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1f2937;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.masalik-category-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  border-radius: 3px;
+  display: inline-block;
+  background-color: #000;
+  -webkit-mask: var(--icon-url) no-repeat center / contain;
+  mask: var(--icon-url) no-repeat center / contain;
+  flex-shrink: 0;
+}
+
+.masalik-category-icon--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.masalik-category-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .masalik-categories-list {
+    gap: 6px;
+  }
+  
+  .masalik-category-link {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .masalik-category-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .masalik-category-icon--fallback {
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+  }
+  
+  .masalik-category-name {
+    max-width: 100px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .masalik-category-link {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #d1d5db;
+  }
+  
+  .masalik-category-link:hover {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #f9fafb;
+  }
+  
+  .masalik-category-icon {
+    background-color: #374151;
+  }
+  
+  .masalik-category-icon--fallback {
+    background: #4b5563;
+  }
+}

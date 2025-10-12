@@ -1,0 +1,11 @@
+<?php
+
+child_require('inc/shortcodes/articles-category-hub.php');
+child_require('inc/shortcodes/articles-category-panels.php');
+child_require('inc/shortcodes/articles-mansory.php');
+child_require('inc/shortcodes/articles-featured-home.php');
+child_require('inc/shortcodes/articles-featured-vertical-list.php');
+child_require('inc/shortcodes/articles-categories.php');
+child_require('inc/shortcodes/products-wc-cards.php');
+child_require('inc/shortcodes/products-wc-book-of-month.php');
+child_require('inc/shortcodes/products-wc-cats-icons.php');

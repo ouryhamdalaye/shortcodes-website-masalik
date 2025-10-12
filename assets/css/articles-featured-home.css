@@ -1,0 +1,50 @@
+/* Featured Posts */
+.feat-articles .fa-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.fa-card {
+  background: #FAF6F0;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.fa-badge {
+  display: inline-block;
+  background: #7FB685;
+  color: #fff;
+  font-weight: 700;
+  font-size: .85rem;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+}
+.fa-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin: .75rem 0 .5rem;
+}
+.fa-title a { color: #1C3D5A; text-decoration: none; }
+.fa-title a:hover { text-decoration: underline; }
+.fa-excerpt { color: #444; margin: 0 0 .75rem; }
+.fa-meta { display:flex; align-items:center; gap:.5rem; color:#666; font-size:.95rem; }
+.fa-dot { opacity:.6; }
+
+/* Couleurs de ta charte (cf. doc Masalik) */
+.bg-tertiary { background-color: #FAF6F0; } /* ivoire clair */
+
+/* Arrondi + padding */
+.rounded-xl { border-radius: 1rem; }
+.p-6 { padding: 1.5rem; }
+
+/* Animation hover */
+.fa-card.hover {
+  transition: all 0.3s ease;
+}
+.fa-card.hover:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),
+              0 4px 6px -4px rgba(0,0,0,0.1); /* shadow-lg */
+  transform: translateY(-0.5rem);            /* -translate-y-2 */
+}

@@ -1,0 +1,164 @@
+/* Masonry en colonnes CSS pour compat large */
+
+
+.masalik-masonry {
+  scroll-margin-top: 120px; /* Add some offset for better positioning */
+}
+
+@media (min-width: 1024px) {
+  .masalik-masonry { column-count: 3; }
+}
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .masalik-masonry { column-count: 2; }
+}
+@media (max-width: 639.98px) {
+  .masalik-masonry { column-count: 1; }
+}
+
+/* Cartes */
+.masalik-card {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  background: #fff;
+  color: #212121;
+  margin: 0 0 1rem 0;
+  border-radius: 7px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.masalik-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.10);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.masalik-card__body { padding: 20px 18px; }
+.masalik-card__footer { padding: 0 18px 18px; }
+
+.masalik-card__title {
+  font-size: 1.125rem;
+  line-height: 1.25;
+  margin: 8px 0 8px;
+}
+.masalik-card__title a { color: inherit; text-decoration: none; }
+.masalik-card__title a:hover { text-decoration: underline; }
+
+.masalik-card__excerpt {
+  margin: 0 0 10px;
+  color: #4b5563;
+}
+
+.masalik-card__meta {
+  font-size: .92rem;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.masalik-meta__sep { opacity: .5; }
+
+
+/* Tag (catégorie / explorer) */
+.masalik-tag{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  padding: 1px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: filter .2s ease, transform .2s ease;
+}
+.masalik-card--term .masalik-tag{
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.masalik-card--post .masalik-tag {
+  background:  color-mix(in oklab, var(--gcid-primary-color) 10%, transparent);;
+  color: var(--gcid-primary-color);
+}
+
+.masalik-tag:hover { filter: brightness(0.95); transform: translateY(-1px); }
+.masalik-tag__chev { display: inline-block; }
+
+/* Bouton Lire plus */
+.masalik-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.masalik-btn--read {
+  background: var(--gcid-primary-color, #013C40);
+  color: #fff;
+}
+.masalik-btn--read:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Cartes de catégories (term) */
+.masalik-card--term{
+  background: linear-gradient(135deg, var(--gcid-secondary-color) 0%, rgba(28, 61, 90, 0.94) 100% 100%);
+}
+
+.masalik-card--term *{
+    color: #fff;
+}
+
+.masalik-card--term .masalik-term__iconwrap {
+  margin-bottom: 8px;
+}
+.masalik-term__icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #fff;
+  webkit-mask: var(--icon-url) no-repeat center / contain;
+  mask: var(--icon-url) no-repeat center / contain;
+}
+.masalik-term__icon--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  background: rgba(2, 132, 199, 0.06);
+  border: 1px dashed rgba(2, 132, 199, 0.25);
+  border-radius: 10px;
+}
+
+/* Cards de Posts */
+.masalik-card--post{
+    border: 1px solid var(--gcid-secondary-color);
+}
+
+/* Pagination */
+.masalik-pagination { margin-top: 16px; text-align: center; }
+.masalik-pagination__list {
+  display: inline-flex; gap: 6px; padding: 0; margin: 0; list-style: none; list-style-type: none !important;
+}
+.masalik-pagination__item a, .masalik-pagination__item span {
+  display: inline-block;
+  min-width: 36px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  color: #111827;
+  transition: background .2s ease, transform .2s ease;
+}
+.masalik-pagination__item .current {
+  background: var(--gcid-secondary-color);
+  border-color: transparent;
+  color: #fff;
+}
+.masalik-pagination__item a:hover { transform: translateY(-2px); }
