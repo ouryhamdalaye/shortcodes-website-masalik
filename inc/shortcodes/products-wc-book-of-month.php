@@ -20,8 +20,10 @@ add_action('init', function () {
 			'title'         => 'Le livre du mois',
 			'subtitle'      => 'Coup de cœur des Éditions Tawhid',
 			'btn_text'      => "Ça m'intéresse →",
-			'bg'            => '#6f2b2f', // fond du hero
-			'text'          => '#ffffff', // couleur de texte
+			'bg'            => 'var(--gcid-edlabnnszn)', // fond du hero
+			'title_color'   => 'var(--gcid-edlabnnszn)', // couleur du titre
+			'text_color'    => 'var(--gcid-edlabnnszn)', // couleur de texte
+			'btn_color'     => 'var(--gcid-secondary-color)', // couleur du bouton
 			'img_size'      => 'large',   // taille WP de l’image
 		], $atts, 'wc_book_of_month');
 
@@ -59,7 +61,7 @@ add_action('init', function () {
 
 		// Sortie HTML
 		ob_start(); ?>
-		<section class="wbom" style="--wbom-bg: <?php echo esc_attr($a['bg']); ?>; --wbom-text: <?php echo esc_attr($a['text']); ?>;">
+		<section class="wbom" style="--wbom-bg: <?php echo esc_attr($a['bg']); ?>; --wbom-title-color: <?php echo esc_attr($a['title_color']); ?>; --wbom-text-color: <?php echo esc_attr($a['text_color']); ?>; --wbom-btn-color: <?php echo esc_attr($a['btn_color']); ?>;">
 			<div class="wbom__head">
 				<h2 class="wbom__kicker"><?php echo esc_html($a['title']); ?></h2>
 				<?php if (!empty($a['subtitle'])): ?>

@@ -9,3 +9,4 @@ child_require('inc/shortcodes/articles-categories.php');
 child_require('inc/shortcodes/products-wc-cards.php');
 child_require('inc/shortcodes/products-wc-book-of-month.php');
 child_require('inc/shortcodes/products-wc-cats-icons.php');
+child_require('inc/shortcodes/wc-cart-button.php');

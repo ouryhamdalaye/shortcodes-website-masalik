@@ -131,12 +131,12 @@ WPRemoteFiles/
 ## 🎯 Customization
 
 ### CSS Variables
-Many shortcodes use CSS custom properties for easy theming, please set them up or change them:
+Many shortcodes use CSS custom properties for easy theming:
 
 ```css
 :root {
-  --gcid-primary-color: #...;
-  --gcid-secondary-color: #...;
+  --gcid-primary-color: #013C40;
+  --gcid-secondary-color: #53B982;
 }
 ```
 
@@ -156,6 +156,10 @@ This project is free to use and modify. Feel free to reuse these shortcodes in y
 
 Contributions are welcome! Feel free to submit issues or pull requests to improve these shortcodes.
 
+## 📞 Support
+
+For questions or support, please open an issue in this repository.
+
 ---
 
-**Note**: These shortcodes were originally developed by odihamd.com for the Masalik.fr website but are designed to be reusable across different WordPress projects.
+**Note**: These shortcodes were originally developed for the Masalik.fr website but are designed to be reusable across different WordPress projects.

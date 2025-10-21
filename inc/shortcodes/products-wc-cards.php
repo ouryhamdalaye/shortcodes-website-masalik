@@ -129,6 +129,7 @@ add_action('init', function () {
 						);}
 						?>
 						<article class="wc-card">
+
 							<a class="wc-card__media" href="<?php echo esc_url($perma); ?>" aria-label="<?php echo esc_attr($title); ?>">
 								<?php echo $img ?: '<div class="wc-card__placeholder" aria-hidden="true"></div>'; ?>
 
@@ -141,94 +142,96 @@ add_action('init', function () {
 								}
 								?>
 							</a>
-							<div class="wc-card__body">
-								<h3 class="wc-card__title"><a href="<?php echo esc_url($perma); ?>"><?php echo esc_html($title); ?></a></h3>
-								<div class="wc-card__price"><?php echo wp_kses_post($price_html); ?></div>
-								<?php 
-								// --- SWATCHES COULEUR (pa_couleur)
-								if ( $product->is_type('variable') ) {
+							<div class="wc-card__info">
+								<div class="wc-card__body">
+									<h3 class="wc-card__title"><a href="<?php echo esc_url($perma); ?>"><?php echo esc_html($title); ?></a></h3>
+									<div class="wc-card__price"><?php echo wp_kses_post($price_html); ?></div>
+									<?php 
+									// --- SWATCHES COULEUR (pa_couleur)
+									if ( $product->is_type('variable') ) {
 
-									$attr_tax = 'pa_couleur';
-									// --- Construire une map variation -> data (image, stock, prix HTML) par slug de couleur
-									$var_map = [];
+										$attr_tax = 'pa_couleur';
+										// --- Construire une map variation -> data (image, stock, prix HTML) par slug de couleur
+										$var_map = [];
 
-									foreach ( $product->get_children() as $vid ) {
-										$v = wc_get_product( $vid );
-										if ( ! $v ) continue;
+										foreach ( $product->get_children() as $vid ) {
+											$v = wc_get_product( $vid );
+											if ( ! $v ) continue;
 
-										// slug de la couleur sur la variation (toujours en 'attribute_{pa_tax}')
-										$slug = get_post_meta( $vid, 'attribute_' . $attr_tax, true );
-										if ( ! $slug ) continue;
+											// slug de la couleur sur la variation (toujours en 'attribute_{pa_tax}')
+											$slug = get_post_meta( $vid, 'attribute_' . $attr_tax, true );
+											if ( ! $slug ) continue;
 
-										$img_id  = $v->get_image_id();
-										$img     = $img_id ? wp_get_attachment_image_src( $img_id, 'woocommerce_thumbnail' )[0] : '';
-										$srcset  = $img_id ? wp_get_attachment_image_srcset( $img_id, 'woocommerce_thumbnail' ) : '';
+											$img_id  = $v->get_image_id();
+											$img     = $img_id ? wp_get_attachment_image_src( $img_id, 'woocommerce_thumbnail' )[0] : '';
+											$srcset  = $img_id ? wp_get_attachment_image_srcset( $img_id, 'woocommerce_thumbnail' ) : '';
 
-										$regular = $v->get_regular_price();
-										$sale    = $v->get_sale_price();
-										$price_h = ($sale && (float)$sale > 0)
-											? '<span class="price"><del>' . wc_price($regular) . '</del> <ins>' . wc_price($sale) . '</ins></span>'
-											: '<span class="price">' . wc_price($v->get_price()) . '</span>';
+											$regular = $v->get_regular_price();
+											$sale    = $v->get_sale_price();
+											$price_h = ($sale && (float)$sale > 0)
+												? '<span class="price"><del>' . wc_price($regular) . '</del> <ins>' . wc_price($sale) . '</ins></span>'
+												: '<span class="price">' . wc_price($v->get_price()) . '</span>';
 
-										$var_map[$slug] = [
-											'img'        => $img,
-											'srcset'     => $srcset,
-											'price_html' => $price_h,
-											'in_stock'   => $v->is_in_stock(),
-										];
-									}
+											$var_map[$slug] = [
+												'img'        => $img,
+												'srcset'     => $srcset,
+												'price_html' => $price_h,
+												'in_stock'   => $v->is_in_stock(),
+											];
+										}
 
-									// --- Termes disponibles pour l’attribut
-									$terms = wp_get_post_terms( $id, $attr_tax, ['fields' => 'all'] );
+										// --- Termes disponibles pour l’attribut
+										$terms = wp_get_post_terms( $id, $attr_tax, ['fields' => 'all'] );
 
-									if ( ! is_wp_error($terms) && ! empty($terms) ) {
-										// Dictionnaire fallback pour couleurs FR -> hex (si pas de meta 'color')
-										$color_map = [
-											'bleu' => '#2b6cb0','rouge' => '#e11d48','noir' => '#111827','gris' => '#6b7280',
-											'blanc' => '#f9fafb','vert' => '#16a34a','jaune' => '#f59e0b','marron' => '#92400e',
-											'rose' => '#ec4899','violet' => '#8b5cf6','orange' => '#f97316','beige' => '#f5f5dc',
-											'dore' => '#d4af37','argent' => '#c0c0c0'
-										];
+										if ( ! is_wp_error($terms) && ! empty($terms) ) {
+											// Dictionnaire fallback pour couleurs FR -> hex (si pas de meta 'color')
+											$color_map = [
+												'bleu' => '#2b6cb0','rouge' => '#e11d48','noir' => '#111827','gris' => '#6b7280',
+												'blanc' => '#f9fafb','vert' => '#16a34a','jaune' => '#f59e0b','marron' => '#92400e',
+												'rose' => '#ec4899','violet' => '#8b5cf6','orange' => '#f97316','beige' => '#f5f5dc',
+												'dore' => '#d4af37','argent' => '#c0c0c0'
+											];
 
-										$max = 3; $shown = 0; $total = count($terms);
-										echo '<div class="wc-card__swatches">';
+											$max = 3; $shown = 0; $total = count($terms);
+											echo '<div class="wc-card__swatches">';
 
-										foreach ( $terms as $t ) {
-											$slug  = $t->slug; // ex. 'bleu'
-											$meta  = get_term_meta( $t->term_id, 'color', true ); // Smart Swatches (si défini)
-											$key   = strtolower( remove_accents( $slug ) );
-											$hex   = $meta ?: ( $color_map[$key] ?? '#999999' );
+											foreach ( $terms as $t ) {
+												$slug  = $t->slug; // ex. 'bleu'
+												$meta  = get_term_meta( $t->term_id, 'color', true ); // Smart Swatches (si défini)
+												$key   = strtolower( remove_accents( $slug ) );
+												$hex   = $meta ?: ( $color_map[$key] ?? '#999999' );
 
-											$vd    = $var_map[$slug] ?? ['img'=>'','srcset'=>'','price_html'=>'','in_stock'=>false];
-											$oos   = empty($vd['in_stock']); // rupture de stock ?
+												$vd    = $var_map[$slug] ?? ['img'=>'','srcset'=>'','price_html'=>'','in_stock'=>false];
+												$oos   = empty($vd['in_stock']); // rupture de stock ?
 
-											if ( $shown < $max ) {
-												echo '<button type="button"
-														class="wc-swatch'. ( $oos ? ' is-oos' : '' ) .'"
-														title="'. esc_attr($t->name) .'"
-														'. ( $oos ? 'disabled aria-disabled="true"' : '' ) .'
-														style="--swatch-color:'. esc_attr($hex) .';"
-														data-variant="'. esc_attr($slug) .'"
-														data-img="'. esc_url($vd['img']) .'"
-														data-srcset="'. esc_attr($vd['srcset']) .'"
-														data-pricehtml="'. esc_attr( $vd['price_html'] ) .'"></button>';
-												$shown++;
+												if ( $shown < $max ) {
+													echo '<button type="button"
+															class="wc-swatch'. ( $oos ? ' is-oos' : '' ) .'"
+															title="'. esc_attr($t->name) .'"
+															'. ( $oos ? 'disabled aria-disabled="true"' : '' ) .'
+															style="--swatch-color:'. esc_attr($hex) .';"
+															data-variant="'. esc_attr($slug) .'"
+															data-img="'. esc_url($vd['img']) .'"
+															data-srcset="'. esc_attr($vd['srcset']) .'"
+															data-pricehtml="'. esc_attr( $vd['price_html'] ) .'"></button>';
+													$shown++;
+												}
 											}
-										}
 
-										if ( $total > $max ) {
-											echo '<span class="wc-swatch__more">+'. ($total - $max) .' de plus</span>';
+											if ( $total > $max ) {
+												echo '<span class="wc-swatch__more">+'. ($total - $max) .' de plus</span>';
+											}
+											echo '</div>';
 										}
-										echo '</div>';
 									}
-								}
-								?>
-								<?php if ($rating) : ?>
-									<div class="wc-card__rating"><?php echo $rating; ?></div>
-								<?php endif; ?>
-							</div>
-							<div class="wc-card__actions">
-								<?php echo $btn; ?>
+									?>
+									<?php if ($rating) : ?>
+										<div class="wc-card__rating"><?php echo $rating; ?></div>
+									<?php endif; ?>
+								</div>
+								<div class="wc-card__actions">
+									<?php echo $btn; ?>
+								</div>
 							</div>
 						</article>
 					<?php endforeach;
