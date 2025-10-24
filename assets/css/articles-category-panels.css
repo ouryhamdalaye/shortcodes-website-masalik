@@ -5,7 +5,7 @@
 	grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
 }
 .cp-card { 
-	background:#fff; 
+	background: linear-gradient(135deg, var(--gcid-secondary-color) 0%, rgba(28, 61, 90, 0.94) 100% 100%);
 	border:1px solid #e6e6e6; 
 	border-radius:12px; 
 	padding:1rem; 

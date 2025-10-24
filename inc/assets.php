@@ -7,7 +7,7 @@ add_action('wp_enqueue_scripts', function () {
     }
 	
 	if ( is_singular() && has_shortcode( get_post()->post_content ?? '', 'articles_category_panels' ) ) {
-        wp_enqueue_style('articles-category-panels', CHILD_URI . '/assets/css/articles-category-panels.css', [], '1.0');
+        wp_enqueue_style('articles-category-panels', CHILD_URI . '/assets/css/articles-category-panels.css', [], '1.01');
     }
 	
 	if ( is_singular() && has_shortcode( get_post()->post_content ?? '', 'articles_featured_home' ) ) {
