@@ -6,7 +6,7 @@ This repository contains a collection of custom WordPress shortcodes for article
 
 ### Articles Shortcodes
 
-#### `[articles_mansory]`
+#### `[articles_masonry]`
 A masonry layout displaying articles and categories in a responsive grid format.
 
 **Parameters:**
@@ -18,7 +18,7 @@ A masonry layout displaying articles and categories in a responsive grid format.
 
 **Example:**
 ```
-[articles_mansory per_page="12" posts_ratio="0.7" exclude_cat="uncategorized"]
+[articles_masonry per_page="12" posts_ratio="0.7" exclude_cat="uncategorized"]
 ```
 
 #### `[articles_categories]`
@@ -69,7 +69,7 @@ Horizontal scrolling category icons for WooCommerce products.
 WPRemoteFiles/
 ├── inc/
 │   ├── shortcodes/
-│   │   ├── articles-mansory.php
+│   │   ├── articles-masonry.php
 │   │   ├── articles-categories.php
 │   │   ├── articles-featured-home.php
 │   │   ├── articles-featured-vertical-list.php
@@ -77,11 +77,13 @@ WPRemoteFiles/
 │   │   ├── articles-category-hub.php
 │   │   ├── products-wc-cards.php
 │   │   ├── products-wc-book-of-month.php
-│   │   └── products-wc-cats-icons.php
+│   │   ├── products-wc-cats-icons.php
+│   │   ├── wc-cart-button.php
+│   │   └── index.php
 │   └── assets.php
 ├── assets/
 │   ├── css/
-│   │   ├── articles-mansory.css
+│   │   ├── articles-masonry.css
 │   │   ├── articles-categories.css
 │   │   ├── articles-featured-home.css
 │   │   ├── articles-featured-vertical-list.css
@@ -89,11 +91,13 @@ WPRemoteFiles/
 │   │   ├── articles-category-hub.css
 │   │   ├── wc-cards.css
 │   │   ├── wc-book-of-month.css
-│   │   └── wc-cats-icons.css
+│   │   ├── wc-cats-icons.css
+│   │   └── wc-custom-product-layout.css
 │   └── js/
 │       └── wc-cards.js
 ├── functions.php
-└── style.css
+├── style.css
+└── README.md
 ```
 
 ## 🎨 Features
@@ -115,7 +119,7 @@ WPRemoteFiles/
 
 ### Basic Article Masonry
 ```
-[articles_mansory]
+[articles_masonry]
 ```
 
 ### Custom Article Categories

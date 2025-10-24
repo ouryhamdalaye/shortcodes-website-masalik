@@ -6,14 +6,14 @@ if ( ! function_exists('add_shortcode') ) {
 }
 
 add_action('init', function () {
-  add_shortcode('articles_mansory', function($atts = []) {
+  add_shortcode('articles_masonry', function($atts = []) {
       $a = shortcode_atts([
           'per_page'      => 18,
           'posts_ratio'   => 0.66,
           'categories'    => 'category',   // taxonomie (par défaut: 'category')
           'exclude_cat'   => '',           // slugs (ou ids) séparés par virgule
           'exclude_posts' => '',           // slugs (ou ids) séparés par virgule
-      ], $atts, 'articles_mansory');
+      ], $atts, 'articles_masonry');
 
       $per_page    = max(1, (int)$a['per_page']);
       $posts_ratio = min(1, max(0, (float)$a['posts_ratio']));
