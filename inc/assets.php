@@ -41,7 +41,7 @@ add_action('wp_enqueue_scripts', function () {
 
     // Load custom product layout CSS only on product pages matching /produit/ pattern
     if ( preg_match('#^/produit/#', $_SERVER['REQUEST_URI'] ?? '') ) {
-        wp_enqueue_style('custom-product-layout', CHILD_URI . '/assets/css/custom-product-layout.css', [], '1.01');
+        wp_enqueue_style('custom-product-layout', CHILD_URI . '/assets/css/wc-custom-product-layout.css', [], '1.0');
     }
 	
 });
