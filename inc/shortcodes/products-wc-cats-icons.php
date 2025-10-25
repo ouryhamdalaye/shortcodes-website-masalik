@@ -1,4 +1,6 @@
 <?php
+namespace ChildTheme\Shortcodes;
+
 /**
  * Shortcode: [wc_cats_icons categories="all" exclude="slug-a,slug-b" parent="0" hide_empty="yes"]
  *

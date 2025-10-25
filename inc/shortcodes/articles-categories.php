@@ -1,4 +1,6 @@
 <?php
+namespace ChildTheme\Shortcodes;
+
 if ( ! defined('ABSPATH') ) { exit; }
 
 if ( ! function_exists('add_shortcode') ) {

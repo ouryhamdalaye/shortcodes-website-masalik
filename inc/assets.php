@@ -10,7 +10,7 @@ add_action('wp_enqueue_scripts', function () {
     }
 	
 	if ( is_singular() && has_shortcode( get_post()->post_content ?? '', 'articles_category_panels' ) ) {
-        wp_enqueue_style('articles-category-panels', CHILD_URI . '/assets/css/articles-category-panels.css', [], '1.01');
+        wp_enqueue_style('articles-category-panels', CHILD_URI . '/assets/css/articles-category-panels.css', [], '1.02');
     }
 	
 	if ( is_singular() && has_shortcode( get_post()->post_content ?? '', 'articles_featured_home' ) ) {
@@ -36,6 +36,12 @@ add_action('wp_enqueue_scripts', function () {
 	
 	if ( is_singular() && has_shortcode( get_post()->post_content ?? '', 'wc_cats_icons' ) ) {
         wp_enqueue_style('wc-cats-icons', CHILD_URI . '/assets/css/wc-cats-icons.css', [], '1.03');
+    }
+
+    // Rihla (Trips featured)
+    if ( is_singular() && has_shortcode( get_post()->post_content ?? '', 'rihla' ) ) {
+        wp_enqueue_style('trips-featured', CHILD_URI . '/assets/css/trips-featured.css', [], '1.075');
+        wp_enqueue_script('trips-featured', CHILD_URI . '/assets/js/trips-featured.js', [], '1.0', true);
     }
 
     // Load custom product layout CSS only on product pages matching /produit/ pattern

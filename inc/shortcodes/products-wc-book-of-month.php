@@ -1,4 +1,6 @@
 <?php
+namespace ChildTheme\Shortcodes;
+
 // Facultatif mais propre : un namespace pour éviter les collisions
 namespace ChildTheme\Shortcodes;
 

@@ -1,5 +1,9 @@
 <?php
+namespace ChildTheme\Shortcodes;
+
 if ( ! defined('ABSPATH') ) { exit; }
+
+
 
 /**
  * Shortcode: [articles_featured_vertical_list per_page="10" categories="category" orderby="date" order="DESC"]
@@ -46,7 +50,7 @@ add_action('init', function () {
           ],
       ];
 
-      $q = new WP_Query([
+      $q = new \WP_Query([
           'post_type'      => 'post',
           'post_status'    => 'publish',
           'posts_per_page' => $per_page,

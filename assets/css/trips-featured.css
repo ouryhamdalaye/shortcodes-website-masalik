@@ -1,0 +1,182 @@
+/* ------------------------------
+   Tokens de base (contrastes)
+--------------------------------*/
+.mrihla-home-books{
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;    /* gris clair */
+  --text-main: #111827;      /* gris très foncé */
+  --text-muted: #4b5563;
+  --chip-bg: #ffffff;
+  --chip-border: #e5e7eb;
+  --chip-active: color-mix(in oklab, var(--trip-featured-accent-color, var(--accent, #53B982)) 18%, #ffffff);
+}
+
+/* ------------------------------
+   Carousel / chips catégories
+--------------------------------*/
+.mrihla-books-carousel{
+  display:flex; gap:.6rem; overflow:auto; padding:.75rem 0 1rem; scroll-snap-type:x mandatory;
+}
+.mrihla-book-chip{
+  scroll-snap-align:start;
+  display:flex; align-items:center; gap:.6rem;
+  padding:.5rem .7rem;
+  border-radius:.75rem;
+  background:var(--chip-bg);
+  border:1px solid var(--chip-border);
+  color:var(--text-main);
+  cursor:pointer; white-space:nowrap;
+  transition:box-shadow .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.mrihla-book-chip:hover{ transform:translateY(-1px); }
+.mrihla-book-chip.is-active{
+  background:var(--chip-active);
+  border-color:color-mix(in oklab, var(--trip-featured-accent-color, var(--accent,#53B982)) 40%, var(--chip-border));
+  box-shadow:0 0 0 2px color-mix(in oklab, var(--trip-featured-accent-color, var(--accent,#53B982)) 35%, transparent);
+}
+.mrihla-book-chip .mrihla-cover{
+  width:42px; height:58px; border-radius:.25rem; display:grid; place-items:center;
+  background:#f3f4f6; /* neutre clair */
+  border:1px solid #e5e7eb;
+}
+.mrihla-book-chip .mrihla-meta strong{display:block;font-size:.95rem; color:var(--text-main)}
+.mrihla-book-chip .mrihla-meta small{opacity:.8; color:var(--text-muted)}
+
+/* ------------------------------
+   Grid
+--------------------------------*/
+.mrihla-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1rem}
+@media (max-width:1024px){.mrihla-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){.mrihla-grid{grid-template-columns:1fr}}
+
+/* ------------------------------
+   Card (contraste + pas d'overlay sombre)
+--------------------------------*/
+.mrihla-trip-card{
+  display:flex; flex-direction:column;
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:7px; overflow:hidden;
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
+  position:relative;
+}
+@media (max-width:900px){.mrihla-trip-card{grid-template-columns:1fr}}
+
+.mrihla-trip-info{
+  display:flex; gap:1rem; justify-content: space-between;
+}
+
+/* Colonne visuelle (garder clean, sans voile sombre) */
+.mrihla-book-stack{
+  position:relative; min-height:240px;
+  display:grid; place-items:center;
+  flex: 1;
+}
+
+/* Spine + cover (pas d'étirement, ratio contrôlé) */
+.mrihla-book{position:absolute; transition:transform .35s ease, box-shadow .35s ease}
+.mrihla-spine.ph{
+  width:28px; height:85%; left:0%;
+  border-radius:.25rem;
+  background:linear-gradient(180deg, var(--trip-featured-accent-color, var(--accent, #53B982)), #9ca3af);
+  box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+/* La cover peut contenir une <img> (cf. patch HTML plus bas) */
+.mrihla-cover{
+  left:5%; width:100%; height:85%;
+  transform:rotateY(-8deg) rotateX(4deg) translateZ(0);
+  transform-style:preserve-3d; border-radius:.5rem;
+  box-shadow:0 18px 40px rgba(0,0,0,.22);
+  background:#fff; /* fallback */
+  display:block; overflow:hidden;
+}
+
+/* Image non étirée */
+.mrihla-cover-img{
+  width:100%; height:100%; object-fit:contain; display:block;
+  background:#fff;
+}
+
+/* Petits labels par-dessus la cover (contraste fort) */
+.mrihla-cover .mrihla-tag{
+  position:absolute; top:10px; left:10px;
+  font-size:.7rem; background:#11182794; color:#fff;
+  padding:.22rem .42rem; border-radius:.3rem; opacity:.92;
+}
+.mrihla-title{
+  text-align: center;
+  padding: 10px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gcid-primary-color);
+  text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--trip-featured-accent-color, var(--accent, #53B982)) 18%, #ffffff), #ffffff);
+}
+
+.mrihla-title h3{
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+
+.mrihla-cover .mrihla-author{
+  position:absolute; bottom:14px; left:12px; font-size:.85rem; color:#111827; opacity:.85;
+}
+
+.mrihla-trip-card:hover .mrihla-cover{
+  transform:rotateY(-2deg) rotateX(2deg) translateY(-2px);
+  box-shadow:0 22px 46px rgba(0,0,0,.28);
+}
+
+/* ------------------------------
+   Content (meilleur contraste)
+--------------------------------*/
+.mrihla-content{ padding:1rem 1rem 1.1rem; color:var(--text-main); flex: 1; }
+.mrihla-content h3{ margin:.15rem 0 .35rem; color:var(--text-main) }
+.mrihla-muted{ 
+  font-size: .7rem;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  color: var(--text-muted);
+
+}
+
+.mrihla-badges{ display:flex; gap:.4rem; flex-wrap:wrap; margin:.5rem 0 .7rem }
+.mrihla-pill{
+  border:1px solid var(--card-border);
+  border-radius:999px; padding:.28rem .6rem;
+  background:#f8fafc; color:#0f172a;
+}
+.mrihla-pill--price{
+  background:linear-gradient(135deg, color-mix(in oklab, var(--trip-featured-accent-color, var(--accent,#53B982)) 35%, white), #fff);
+  color:#0b2e1a; border-color:transparent; font-weight:800;
+}
+
+.mrihla-excerpt{ margin:.25rem 0 1rem; color:#374151 }
+
+.mrihla-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.7rem .9rem; border-radius:7px;
+  background:linear-gradient(135deg, var(--trip-featured-accent-color, var(--accent,#53B982)),
+                                    color-mix(in oklab, var(--trip-featured-accent-color, var(--accent,#53B982)) 25%, white));
+  color:#0b2e1a; font-weight:800; text-decoration:none; margin-right:.4rem;
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
+  transition:transform .15s ease, box-shadow .15s ease;
+  width: 100%;
+}
+.mrihla-btn:hover{ transform:translateY(-1px); box-shadow:0 14px 26px rgba(0,0,0,.16); }
+
+.mrihla-link{
+  color:color-mix(in oklab, var(--trip-featured-accent-color, var(--accent,#53B982)) 75%, #000);
+  text-underline-offset:4px;
+}
+
+/* ------------------------------
+   Placeholders (plus discrets)
+--------------------------------*/
+.ph{
+  font-size:.8rem; color:#6b7280;
+  background:#f3f4f6; border:1px dashed #e5e7eb;
+  display:grid; place-items:center;
+}
